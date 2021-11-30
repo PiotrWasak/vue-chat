@@ -7,7 +7,7 @@ class SocketioService {
     constructor() {}
 
     setupSocketConnection() {
-        this.socket = io('https://wasak.ga');
+        this.socket = io('https://wasak.ga', { transports: ['websocket', 'polling', 'flashsocket'] });
         this.socket.on('msg', (msg) => {
             store.dispatch("ADD_MSG", msg);
         });

@@ -7,7 +7,7 @@ class SocketioService {
     constructor() {}
 
     setupSocketConnection() {
-        this.socket = io('http://localhost:3000');
+        this.socket = io('https://wasak.ga');
         this.socket.on('msg', (msg) => {
             store.dispatch("ADD_MSG", msg);
         });

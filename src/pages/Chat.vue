@@ -29,6 +29,7 @@
 <script>
 import SocketioService from "/services/socketio.service.js"
 import {mapGetters} from "vuex"
+import {nextTick} from 'vue'
 
 export default {
   name: "Chat",
@@ -55,7 +56,16 @@ export default {
   },
   computed: {
     ...mapGetters(["getMsgs", "getUserList", "getActiveUser"]),
+    msgsLength() {
+      return this.$store.getters.getMsgs.length;
+    }
   },
+  watch: {
+    async msgsLength() {
+        await nextTick();
+        this.scrollToBottom();
+    },
+  }
 }
 </script>
 

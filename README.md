@@ -1,6 +1,7 @@
 Run server with node (server/index.js) and then the client app (npm run dev). 
 
 Live: (server on heroku, app on netlify):
+http://vue-chat.cf
 https://affectionate-ardinghelli-e3aac4.netlify.app
 
 # Vue 3 + Vite

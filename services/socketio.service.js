@@ -7,7 +7,7 @@ class SocketioService {
     constructor() {}
 
     setupSocketConnection() {
-        this.socket = io('http://localhost:3000', { transports: ['websocket'] });
+        this.socket = io('https://sleepy-bayou-03897.herokuapp.com', { transports: ['websocket'] });
         this.socket.on('msg', (msg) => {
             store.dispatch("ADD_MSG", msg);
         });

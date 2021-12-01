@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = require("socket.io")(server, {
     cors: {
-        origin: "https://affectionate-ardinghelli-e3aac4.netlify.app",
+        origin: "localhost:3000",
         methods: ["GET", "POST"]
     }
 });
@@ -33,9 +33,6 @@ io.on('connection', (socket) => {
 
 });
 
-
-
-
-server.listen(3000, () => {
-    console.log('listening on *:3000');
+server.listen(3000, "localhost", () => {
+    console.log('listening on :3000');
 });

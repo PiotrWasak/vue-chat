@@ -4,12 +4,12 @@
     <small>Logged in as: <strong>{{ getActiveUser }}</strong></small>
 
     <div class="row">
-      <div class="col-10">
-        <ul class="list-group">
+      <div class="col-lg-10">
+        <ul ref="chatList" class="list-group">
           <li v-for="msg in getMsgs" class="list-group-item"><span class="list-group-user">{{msg.user}}</span> {{msg.msg}}</li>
         </ul>
       </div>
-      <div class="col-2"><p class="lead">Users:</p>
+      <div class="col-lg-2"><p class="lead">Users:</p>
         <ul class="list-group">
           <li v-for="user in getUserList" class="list-group-item"> {{user}} </li>
         </ul>
@@ -47,11 +47,15 @@ export default {
         SocketioService.sendMsg({user: this.getActiveUser, msg: this.inputMsg});
         this.inputMsg = '';
       }
+    },
+    scrollToBottom() {
+      const chatList = this.$refs.chatList;
+      chatList.scrollTop = chatList.scrollHeight;
     }
   },
   computed: {
     ...mapGetters(["getMsgs", "getUserList", "getActiveUser"]),
-  }
+  },
 }
 </script>
 

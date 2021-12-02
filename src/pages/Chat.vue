@@ -1,12 +1,12 @@
 <template>
   <section id="chat-section" class="container">
     <h1>Vue Chat</h1>
-    <small>Logged in as: <strong>{{ getActiveUser }}</strong></small>
+    <small>Logged in as: <strong>{{ getActiveUser.nickname }}</strong></small>
 
     <div class="row">
       <div class="col-lg-10">
         <ul ref="chatList" class="list-group">
-          <li v-for="msg in getMsgs" class="list-group-item"><span class="list-group-user">{{msg.user}}</span> {{msg.msg}}</li>
+          <li v-for="msg in getMsgs" :style="{ color: msg.user.color }" class="list-group-item"><span :style="{ color: msg.user.color }" class="list-group-user">{{msg.user.nickname}}</span> {{msg.msg}}</li>
         </ul>
       </div>
       <div class="col-lg-2"><p class="lead">Users:</p>
@@ -43,10 +43,8 @@ export default {
   },
   methods: {
     msgSubmit() {
-      //this.getUserColorHash();
-      console.log("Userschat", this.getActiveUser);
       if (this.inputMsg) {
-        SocketioService.sendMsg({user: this.getActiveUser, msg: this.inputMsg});
+        SocketioService.sendMsg({user: this.getActiveUser, msg: this.inputMsg, color: this.getActiveUser.color});
         this.inputMsg = '';
       }
     },
@@ -54,11 +52,6 @@ export default {
       const chatList = this.$refs.chatList;
       chatList.scrollTop = chatList.scrollHeight;
     },
-    getUserColorHash(user) {
-      this.getUserList.find((user) => {
-        console.log(user);
-      })
-    }
   },
   computed: {
     ...mapGetters(["getMsgs", "getUserList", "getActiveUser"]),
@@ -67,7 +60,7 @@ export default {
     }
   },
   watch: {
-    async msgsLength() {
+     async msgsLength() {
         await nextTick();
         this.scrollToBottom();
     },

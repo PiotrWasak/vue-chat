@@ -22,13 +22,20 @@ export default {
   methods: {
     nicknameSubmit() {
       if(this.inputNickname) {
-        socketioService.login(this.inputNickname);
-        this.$store.dispatch("SET_ACTIVE_USER", this.inputNickname);
+        const inputUserData =
+            {"nickname": this.inputNickname,
+              "color": this.generateRandomUserColorHex(),
+            };
+        socketioService.login(inputUserData);
+        this.$store.dispatch("SET_ACTIVE_USER", inputUserData);
         //this.$router.push("/chat/" + this.inputNickname);
         this.$router.push("/chat");
       }
+    },
+    generateRandomUserColorHex() {
+      return "#" + Math.floor(Math.random()*16777215).toString(16);
     }
-  }
+  },
 }
 </script>
 

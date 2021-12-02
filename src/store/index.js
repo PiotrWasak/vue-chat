@@ -6,7 +6,7 @@ const store = createStore({
         return {
             msgs: [],
             userList: {},
-            activeUser: '',
+            activeUserData: '',
         }
     },
     mutations: {
@@ -17,7 +17,7 @@ const store = createStore({
             state.userList = payload;
         },
         SET_ACTIVE_USER(state, payload) {
-            state.activeUser = payload;
+            state.activeUserData = payload;
         }
     },
     actions: {
@@ -34,7 +34,7 @@ const store = createStore({
     getters: {
         getMsgs: state => state.msgs,
         getUserList: state => state.userList,
-        getActiveUser: state => state.activeUser,
+        getActiveUser: state => state.activeUserData,
     }
 })
 

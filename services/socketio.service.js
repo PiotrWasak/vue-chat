@@ -25,13 +25,13 @@ class SocketioService {
         this.socket.emit('msg', data);
     }
 
-    login(nickname) {
-        this.socket.emit('login', {nickname: nickname, color: generateRandomUserColorHex()});
+    login(payload) {
+        this.socket.emit('login', payload);
     }
 }
 
-function generateRandomUserColorHex() {
-    return "#" + Math.floor(Math.random()*16777215).toString(16);
-}
+// function generateRandomUserColorHex() {
+//     return "#" + Math.floor(Math.random()*16777215).toString(16);
+// }
 
 export default new SocketioService();

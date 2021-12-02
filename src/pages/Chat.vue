@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     msgSubmit() {
-      this.getUserColorHash();
+      //this.getUserColorHash();
       console.log("Userschat", this.getActiveUser);
       if (this.inputMsg) {
         SocketioService.sendMsg({user: this.getActiveUser, msg: this.inputMsg});

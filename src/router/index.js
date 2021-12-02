@@ -22,7 +22,12 @@ const routes = [
                 next("/");
             }
         }
-    }
+    },
+    {
+        path: "/:catchAll(.*)",
+        name: "Not Found",
+        component: Login
+    },
 ]
 
 const router = createRouter({

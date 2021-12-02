@@ -11,7 +11,7 @@
       </div>
       <div class="col-lg-2"><p class="lead">Users:</p>
         <ul class="list-group">
-          <li v-for="user in getUserList" class="list-group-item"> {{user}} </li>
+          <li v-for="user in getUserList" :style="{ color: user.color }" class="list-group-item"> {{user.nickname}} </li>
         </ul>
       </div>
     </div>
@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     msgSubmit() {
+      this.getUserColorHash();
       console.log("Userschat", this.getActiveUser);
       if (this.inputMsg) {
         SocketioService.sendMsg({user: this.getActiveUser, msg: this.inputMsg});
@@ -52,6 +53,11 @@ export default {
     scrollToBottom() {
       const chatList = this.$refs.chatList;
       chatList.scrollTop = chatList.scrollHeight;
+    },
+    getUserColorHash(user) {
+      this.getUserList.find((user) => {
+        console.log(user);
+      })
     }
   },
   computed: {

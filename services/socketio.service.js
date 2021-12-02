@@ -26,8 +26,12 @@ class SocketioService {
     }
 
     login(nickname) {
-        this.socket.emit('login', nickname);
+        this.socket.emit('login', {nickname: nickname, color: generateRandomUserColorHex()});
     }
+}
+
+function generateRandomUserColorHex() {
+    return "#" + Math.floor(Math.random()*16777215).toString(16);
 }
 
 export default new SocketioService();
